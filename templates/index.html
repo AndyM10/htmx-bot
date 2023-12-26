@@ -3,12 +3,16 @@
 {% block title %}Index{% endblock %}
 
 {% block content %}
-  <h1>Welcome to Rst Bot</h1>
-<form id="add-form">
-	<input placeholder="Your todo description..." required type=text name="description">
-	<button hx-post="/todos" hx-trigger="click" hx-target="#todos-content" hx-swap="beforeend">Add</button>
-</form>
-<div id="list" hx-get="/todos" hx-target="this" hx-trigger="load" hx-swap="outerHTML">
-	Loading...
+<div class="w-2/3 h-3/4 bg-base-300 rounded flex flex-col"  >
+  <div class="w-full h-full" id="messages">
+    <span class="loading loading-spinner text-accent"/>
+  </div>
+    <form class="flex flex-row p-2" hx-post="/generate" hx-target="#messages" hx-swap="innerHtml">
+      <input type="text" class="input input-bordered w-3/4 mx-auto" name="message" placeholder="type your message here...">
+      <button type="submit" class="btn btn-accent w-1/4">
+        Send
+        <span class="loading loading-spinner"></span>
+      </button>
+    </form>
 </div>
 {% endblock %}
